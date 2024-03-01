@@ -3,7 +3,7 @@
 
 // Note: if looping is needed, use only primitive for/while/do-while loop ( forearch, map, etc are not allowed).
 function isPrime(num){
-    if(num % 2 ==0 || num < 2)return false;
+    if(num % 2 == 0 || num < 2)return false;
     for(let i = 2; i<= Math.sqrt(num);i++){
         if(num % i == 0 ){
             return false

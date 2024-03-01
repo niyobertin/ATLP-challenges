@@ -30,6 +30,6 @@ const inPlaceReversing = (list) => {
             start++;
             end--;
     }
-    console.log(list);
+    return list;
 }
 inPlaceReversing([1,2,3,4,5,6,7,8,9,10]);

@@ -1,53 +1,38 @@
 
-const arrays = [];
-const femaleArr =[];
-const maleArr = [];
-let people = {};
-let male = {};
-let female = {};
-let males =[];
-let females =[];
-let malesNo = 0;
-let femaleNo = 0;
+let males = [];
+let maleObj = {}
+let females = [];
+let femalesObj = {};
+let genders ={};
 let nonGender = 0;
-males.push(male);
-females.push(female);
-function splint(arr,chunck){
-    for(let i=0;i< arr.length;i+=chunck){
-        let temp;//to hold chunck of an array
-        temp = arr.slice(i,i+chunck)
-        arrays.push(temp)
-    }
-    arrays.forEach((ele) =>{
-        if(ele.includes("male")){
-            malesNo++;
-            let firstElementArray=  ele[0].split(' ');
-            let remaining = ele.slice(1);
-            const newArr = firstElementArray.concat(remaining);
-            const first_name = newArr[0];
-            const second_name = newArr[1];
-            const age = newArr[2];
-            maleArr.push(newArr);
-            male[first_name] = {'second-name':second_name,'age':age};
-        }else if(ele.includes("female")){
-            femaleNo++;
-            let firstElementArray=  ele[0].split(' ');
-            let remaining = ele.slice(1);
-            const newFemale = firstElementArray.concat(remaining);
-            const first_name = newFemale[0];
-            const second_name = newFemale[1];
-            const age = newFemale[2];
-            femaleArr.push(newFemale);
-            female[first_name] = {'second-name':second_name,'age':age};
-        }else{
-            nonGender+=1;
+let maleNo = 0;
+let femalesNo = 0;
+let first_name,second_name;
+// const subArr = [];
+males.push(maleObj);
+females.push(femalesObj);
+
+const sortGender = (array) => {
+    array.forEach(element => {
+     const subArr=element.split(' ');
+    const first_name = subArr[0];
+    const second_name = subArr[1];
+    const age = subArr[2];
+        if(subArr.includes('male')){
+            maleNo++;
+            maleObj[first_name] = {'second-name':second_name,'age':age};
+        }else if(subArr.includes('female')){
+            femalesNo++;
+            femalesObj[first_name] = {'second-name':second_name,'age':age}; 
         }
-    })
-  return  people = {males :males,females:females,Male:malesNo,Female:femaleNo,other_gender:nonGender};
+        else if((!subArr.includes('male')) && (!subArr.includes('female'))){
+            nonGender++;
+        }
+    });
+
+   return genders = {"males":males,"females":females,"male_number":maleNo,"female_number":femalesNo,"other_gender":nonGender};
 }
-const array = ["Patrick wyne", 30, "female", "lil wyne", 32, "kakao","Eric mimi", 21, "female","Dodos deck", 21,"male","Alian Dwine", 22, "male","Patrick wyne", 33, "male","Patrick wyne", 10,"custom","Patrick wyne", 40,"male"];
-console.log(splint(array,3));
-// console.log(people);
-// console.log(females);
-// console.log(males);
+
+const gender = ["Patrick wyne, 30, male","Niyonkuru bertin, 10, male","queen agela, 3, female", "lil wyne, 32, male","Eric mimi, 21, female","Dodos deck, 21,male","Alian Dwine, 22, male","Patrick wyne, 33, male","Patrick wyne, 10,trans","Patrick wyne, 40,non-binary"]
+console.log(sortGender(gender));
 
